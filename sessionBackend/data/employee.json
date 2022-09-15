@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Priya Pandey",
+    "empid": 1223,
+    "contact": 9999999999,
+    "location": "Rabale"
+  },
+  {
+    "name": "Sushant Kadam ",
+    "empid": 1235,
+    "contact": 8888888888,
+    "location": "Rabale"
+  },
+  {
+    "name": "Srushti Shetty ",
+    "empid": 1234,
+    "contact": 9898989898,
+    "location": "Rabale"
+  },
+  {
+    "name": "Amruta Khamkar ",
+    "empid": 1236,
+    "contact": 9898989898,
+    "location": "Rabale"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "date": "16-08-22",
+    "session_name": "React Js intro",
+    "facilitator": "Priya Pandey",
+    "empid": 1223,
+    "pics": "images/priya.js",
+    "video": "",
+    "ppt": "sdcd",
+    "location": "rabale",
+    "members": [
+      "6321cf06d5b52359a594d561",
+      "6321cf06d5b52359a594d562",
+      "6321cf06d5b52359a594d563",
+      "6321cf06d5b52359a594d564"
+    ]
+  },
+  {
+    "date": "22-08-22",
+    "session_name": "React Hooks",
+    "facilitator": "Amruta Khamkar",
+    "empid": 1236,
+    "pics": "images/amruta.js",
+    "video": "",
+    "ppt": "sdcd",
+    "location": "rabale",
+    "members": [
+      "6321cf06d5b52359a594d561",
+      "6321cf06d5b52359a594d562",
+      "6321cf06d5b52359a594d563",
+      "6321cf06d5b52359a594d564"
+    ]
+  },
+  {
+    "date": "25-08-22",
+    "session_name": "React lifecycle methods",
+    "facilitator": "Sushant Kadam",
+    "empid": 1235,
+    "pics": "images/sushantk.js",
+    "video": "",
+    "ppt": "sdcd",
+    "location": "rabale",
+    "members": [
+      "6321cf06d5b52359a594d561",
+      "6321cf06d5b52359a594d562",
+      "6321cf06d5b52359a594d563",
+      "6321cf06d5b52359a594d564"
+    ]
+  },
+
+  {
+    "date": "29-08-22",
+    "session_name": "MongoDB vs DynamoDB ",
+    "facilitator": "Srushti Shetty",
+    "empid": 1234,
+    "pics": "images/srushti.js",
+    "video": "",
+    "ppt": "sdcd",
+    "location": "pune",
+    "members": [
+      "6321cf06d5b52359a594d561",
+      "6321cf06d5b52359a594d562",
+      "6321cf06d5b52359a594d563",
+      "6321cf06d5b52359a594d564"
+    ]
+  }
+]
