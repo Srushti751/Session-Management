@@ -4,6 +4,7 @@ const detailsRoute = require("./routes/detailsRoute");
 const attendanceRoute = require("./routes/attendanceRoute");
 const employeeRoute = require("./routes/employeeRoute");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const PORT = 8005;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/images", express.static("images"));
+app.use(cors());
 
 app.use("/details", detailsRoute);
 app.use("/employee", employeeRoute);

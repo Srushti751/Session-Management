@@ -26,14 +26,14 @@ const detailsSchema = mongoose.Schema(
     location: {
       type: String,
     },
-    members: {
-      type: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "employee",
-        },
-      ],
-    },
+    // members: {
+    //   type: [
+    //     {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "employee",
+    //     },
+    //   ],
+    // },
     pageNumber: {
       type: Number,
     },

@@ -45,10 +45,28 @@ router.get("/sessiondata", async (req, res) => {
   console.log("location", loc);
   try {
     const data = await detailsModel
-      .find({ location: loc })
-      .populate(["facilitator", "members"])
-      .limit(limit * 1)
-      .skip((page - 1) * limit);
+      .find()
+      // .find({ location: loc })
+      .populate(["facilitator"]);
+    // .limit(limit * 1)
+    // .skip((page - 1) * limit);
+    res.send({ total: data.length, data });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+router.get("/sessiondata/:id", async (req, res) => {
+  // const { page = 1, limit = 10, location, searchterm } = req.query;
+  const id = req.params.id;
+  try {
+    const data = await detailsModel
+      .find({ _id: id })
+      // .find({ location: loc })
+      .populate(["facilitator"]);
+    // .limit(limit * 1)
+    // .skip((page - 1) * limit);
     res.send({ total: data.length, data });
   } catch (error) {
     console.log(error);

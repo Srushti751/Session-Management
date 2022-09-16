@@ -1,0 +1,45 @@
+.drawerStyle {
+  background: black !important;
+  height: 100vh;
+}
+
+.drawerItem {
+  color: #fff;
+  background: black;
+  /* height: 100vh; */
+}
+
+.profileStyle {
+  position: absolute;
+  right: 3px;
+}
+
+.contentStyle {
+  background-color: rgb(249, 250, 254);
+}
+
+.navStyle {
+  display: flex;
+}
+
+.linkStyle {
+  text-decoration: none;
+  color: black;
+}
+
+a {
+  color: black;
+}
+
+/* dashboard */
+.container {
+  height: 80vh;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Session page */
