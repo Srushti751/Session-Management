@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../App.css";
+import { AiOutlineMenu } from "react-icons/ai";
 
 // import component 👇
 import Drawer from "react-modern-drawer";
 
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
+import { Link, NavLink } from "react-router-dom";
+import { Context } from "../context/userContext";
 
 function CustomDrawer() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -14,9 +17,12 @@ function CustomDrawer() {
     setIsOpen((prevState) => !prevState);
   };
 
+  const currentUser = useContext(Context);
   return (
     <>
-      <button onClick={toggleDrawer}>Show</button>
+      <button className="drawerBtn" onClick={toggleDrawer}>
+        <AiOutlineMenu />
+      </button>
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
@@ -25,11 +31,43 @@ function CustomDrawer() {
         overlayColor="#fff"
         // style={{ background: "black" }}
       >
-        {navlinks.map((el) => (
+        {/* {navlinks.map((el) => (
           <ul class="list-group">
-            <li class="list-group-item drawerStyle">{el}</li>
+            <Link
+              className="list-group-item drawerItem"
+              to={`/${el}`}
+              as={NavLink}
+            >
+              {el}
+            </Link>
           </ul>
-        ))}
+        ))} */}
+        {console.log("cntext", currentUser)}
+        <ul class="list-group">
+          <Link
+            className="list-group-item drawerItem"
+            to="/dashboard"
+            as={NavLink}
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            className="list-group-item drawerItem"
+            to="/session"
+            as={NavLink}
+          >
+            Session
+          </Link>
+
+          <Link
+            className="list-group-item drawerItem"
+            to="/profile"
+            as={NavLink}
+          >
+            Profile
+          </Link>
+        </ul>
       </Drawer>
     </>
   );

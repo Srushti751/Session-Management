@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllSessionApi, getSessionApi } from "../apis/sessionapi";
 import Navbar from "../components/Navbar";
+import jwt from "jwt-decode";
 
 function Sessions({ name }) {
   const [sessionDetails, setSessionDetails] = useState([]);
-  const [sessionOnedata, setSessionOnedata] = useState([]);
+
+  const navigate = useNavigate();
 
   const getSessionDetails = async () => {
-    const data = await getAllSessionApi();
-    // console.log("14--------", data);
-    setSessionDetails(data.data.data);
-  };
+    const userTok = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : "";
+    if (userTok.token) {
+      const user = jwt(userTok.token); // decode your token here
+      const data = await getAllSessionApi(userTok.token, user);
+      // console.log("cx", user);
+      // localStorage.setItem("token", JSON.stringify(user));
+      setSessionDetails(data.data.data);
+      console.log("auh");
+    }
 
-  const getSessionData = async (id) => {
-    const data = await getSessionApi(id);
-    console.log("20--------", data);
-    setSessionOnedata(data.data.data);
+    // console.log("14--------", data);
   };
 
   useEffect(() => {
@@ -42,18 +48,17 @@ function Sessions({ name }) {
             {sessionDetails &&
               sessionDetails.map((session, index) => {
                 return (
-                  <Link
-                    // onClick={() => getSessionData(session._id)}
-                    to={`/sessiondetail/${session._id}`}
-                    key={index}
+                  <tr
+                    className=""
+                    onClick={() => navigate(`/sessiondetail/${session._id}`)}
                   >
-                    <tr>
-                      <td>{session.date}</td>
-                      <td>{session.session_name}</td>
-                      <td>{session.facilitator.name}</td>
-                      <td>{session.facilitator.location}</td>
-                    </tr>
-                  </Link>
+                    <td>{session.date}</td>
+                    <td>{session.session_name}</td>
+                    <td>{session.facilitator && session.facilitator.name}</td>
+                    <td>
+                      {session.facilitator && session.facilitator.location}
+                    </td>
+                  </tr>
                 );
               })}
           </tbody>

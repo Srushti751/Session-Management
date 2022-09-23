@@ -1,5 +1,9 @@
 const express = require("express");
+const { protect } = require("../authMiddleware/protect");
 const detailsModel = require("../models/Details");
+const employeeModel = require("../models/Employee");
+
+const upload = require("../utils/multerfunc");
 const router = express.Router();
 
 router.post("/sessiondata/newdata", async (req, res) => {
@@ -39,14 +43,14 @@ router.post("/sessiondata/newdata", async (req, res) => {
 });
 
 // get session details based on Location
-router.get("/sessiondata", async (req, res) => {
+router.get("/sessiondata", protect, async (req, res) => {
   const { page = 1, limit = 10, location, searchterm } = req.query;
   const loc = location?.toLowerCase();
   console.log("location", loc);
   try {
     const data = await detailsModel
-      .find()
-      // .find({ location: loc })
+      // .find()
+      .find({ location: loc })
       .populate(["facilitator"]);
     // .limit(limit * 1)
     // .skip((page - 1) * limit);
@@ -91,6 +95,23 @@ router.get("/searchsessiondata", async (req, res) => {
     );
     res.send(data);
   } catch (error) {}
+});
+
+router.put("/updatePics", upload.single("profileImage"), async (req, res) => {
+  const profileImage = req.file.path;
+  const id = req.query.id;
+
+  try {
+    const data = await detailsModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        pics: profileImage,
+      }
+    );
+    res.send("Image Updated");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //get attendance count

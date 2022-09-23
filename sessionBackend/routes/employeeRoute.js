@@ -15,9 +15,10 @@ router.post("/employeedata", async (req, res) => {
   }
 });
 
-router.get("/employeedata", async (req, res) => {
+router.get("/employeedata/:id", async (req, res) => {
+  const id = req.params.id;
   try {
-    const data = await employeeModel.find({});
+    const data = await employeeModel.find({ _id: id });
     res.send(data);
   } catch (error) {
     res.send(error);
@@ -53,7 +54,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { name, empid, password } = req.body;
+  const { empid, password } = req.body;
   console.log("req", req.body);
   try {
     const user = await employeeModel.findOne({ empid });
@@ -64,14 +65,14 @@ router.post("/login", async (req, res) => {
       console.log(bool);
 
       const currentUser = {
-        name: user.name,
+        empid: user.empid,
         isAdmin: user.isAdmin,
         _id: user.id,
-        // token: generateToken(user.id, user.name),
+        token: generateToken(user.id, user.empid, user.location, user.name),
       };
-      console.log(user.name);
 
       res.json({
+        user: currentUser,
         message: "Login Success",
       });
     } else {
@@ -85,10 +86,11 @@ router.post("/login", async (req, res) => {
 });
 
 //update location
-router.patch("/updatelocation/:id", async (req, res) => {
+router.put("/updateEmployee/:id", async (req, res) => {
   const filter = { _id: req.params.id };
-  const loc = req.body.location.toLowerCase();
-  const condition = { location: loc };
+  const { name, empid, contact, location } = req.body;
+  const loc = location && location.toLowerCase();
+  const condition = { name, empid, contact, location: loc };
   try {
     await employeeModel.findByIdAndUpdate(filter, condition);
     res.send("Employee location Updated");

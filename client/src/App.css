@@ -1,5 +1,6 @@
 .drawerStyle {
   background: black !important;
+  width: 300px !important;
   height: 100vh;
 }
 
@@ -9,13 +10,21 @@
   /* height: 100vh; */
 }
 
+.drawerBtn {
+  width: 100px;
+  border: none;
+  outline: none;
+  padding: 15px;
+  color: rgb(18, 18, 19);
+  background-color: #fff;
+}
 .profileStyle {
   position: absolute;
   right: 3px;
 }
 
 .contentStyle {
-  background-color: rgb(249, 250, 254);
+  /* background-color: rgb(249, 250, 254); */
 }
 
 .navStyle {
@@ -43,3 +52,40 @@ a {
 }
 
 /* Session page */
+.sessionCard {
+  /* border: 1px solid black; */
+  width: 90%;
+  height: 90%;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+
+.sessionCol {
+  /* border: 1px solid red; */
+  /* height: 70%; */
+  height: 90%;
+
+  margin-top: 5%;
+}
+
+.sessionImg {
+  width: 70%;
+  box-shadow: rgba(70, 70, 78, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+}
+
+.detailsStyle {
+  font-weight: 500;
+}
+
+.showBtn {
+  position: absolute;
+  border: none;
+  outline: none;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+  background-color: rgb(89, 93, 97);
+  color: #fff;
+}

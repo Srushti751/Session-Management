@@ -7,7 +7,7 @@ const employeeSchema = mongoose.Schema(
       type: String,
     },
     empid: {
-      type: String,
+      type: Number,
       unique: true,
     },
     password: {
