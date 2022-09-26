@@ -11,22 +11,24 @@ function Profilecard({
   setEmpid,
   setLocation,
   setContact,
+  setProfile,
 }) {
-  const onChangeFile = (event) => {
+  const onChangeFile = async (event) => {
     const formData = new FormData();
     formData.append("profileImage", event.target.files[0]);
-    updateImage(formData)
-      .then((data) => {
-        alert("updated");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await updateImage(formData);
+
+      alert("updated");
+      const newdata = await getUser();
+      setProfile(newdata.data);
+      console.log("newdata", newdata.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
+import { GrEdit } from "react-icons/gr";
 import { getUser, updateEmployee } from "../apis/employeeapi";
 import Navbar from "../components/Navbar";
 import Profilecard from "../components/Profilecard";
@@ -24,6 +25,11 @@ function Profile({ name }) {
       console.log("hhhhhhhhhhhhh", username, location, empid, contact);
       const data = await updateEmployee({ username, location, empid, contact });
       alert("updated");
+      setEdit(true);
+      const newdata = await getUser();
+      console.log("20--------", newdata);
+      setProfile(newdata.data);
+
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -38,7 +44,12 @@ function Profile({ name }) {
       <Navbar name={name} />
       {console.log("profile", profile)}
       <Container>
-        <Button onClick={() => setEdit(false)}>Edit</Button>
+        <Button
+          className="bg-transparent btnPos"
+          onClick={() => setEdit(false)}
+        >
+          <GrEdit />
+        </Button>
         {!edit && <Button onClick={() => updateUserData()}>Update</Button>}
         <Profilecard
           profile={profile}
@@ -51,6 +62,7 @@ function Profile({ name }) {
           setLocation={setLocation}
           contact={contact}
           setContact={setContact}
+          setProfile={setProfile}
         />
       </Container>
     </>

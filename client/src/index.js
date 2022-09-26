@@ -1,20 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-import { Context } from "./context/userContext";
+import store from "./store";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-const currentUser = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user"))
-  : "";
-root.render(
-  <React.StrictMode>
-    <Context.Provider value={currentUser}>
+ReactDOM.render(
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
-    </Context.Provider>
-  </React.StrictMode>
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -9,6 +9,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { Link, NavLink } from "react-router-dom";
 import { Context } from "../context/userContext";
+import Profile from "../pages/Profile";
 
 function CustomDrawer() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -21,7 +22,14 @@ function CustomDrawer() {
   return (
     <>
       <button className="drawerBtn" onClick={toggleDrawer}>
-        <AiOutlineMenu />
+        {/* <AiOutlineMenu /> */}
+        <img
+          src="https://img.icons8.com/bubbles/100/000000/user.png"
+          className="img-radius mt-2"
+          alt="User-Profile-Image"
+          width={50}
+          height={50}
+        />
       </button>
       <Drawer
         open={isOpen}
@@ -43,7 +51,7 @@ function CustomDrawer() {
           </ul>
         ))} */}
         {console.log("cntext", currentUser)}
-        <ul class="list-group">
+        {/* <ul class="list-group">
           <Link
             className="list-group-item drawerItem"
             to="/dashboard"
@@ -67,7 +75,8 @@ function CustomDrawer() {
           >
             Profile
           </Link>
-        </ul>
+        </ul> */}
+        <Profile />
       </Drawer>
     </>
   );
