@@ -1,6 +1,8 @@
+import jwtDecode from "jwt-decode";
 import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { GrEdit } from "react-icons/gr";
+import { useSelector } from "react-redux";
 import { getUser, updateImage } from "../apis/employeeapi";
 
 function Profilecard({
@@ -13,14 +15,18 @@ function Profilecard({
   setContact,
   setProfile,
 }) {
+  let user = useSelector((state) => state.loginUserReducer.currentUser);
+  const token = user && user.token;
+  const userDet = token ? jwtDecode(token) : "";
+
   const onChangeFile = async (event) => {
     const formData = new FormData();
     formData.append("profileImage", event.target.files[0]);
     try {
-      await updateImage(formData);
+      await updateImage(userDet.id, formData);
 
       alert("updated");
-      const newdata = await getUser();
+      const newdata = await getUser(userDet.id);
       setProfile(newdata.data);
       console.log("newdata", newdata.data);
     } catch (error) {

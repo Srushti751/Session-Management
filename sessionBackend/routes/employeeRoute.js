@@ -65,9 +65,9 @@ router.post("/login", async (req, res) => {
       console.log(bool);
 
       const currentUser = {
-        empid: user.empid,
+        // empid: user.empid,
         isAdmin: user.isAdmin,
-        _id: user.id,
+        // _id: user.id,
         token: generateToken(user.id, user.empid, user.location, user.name),
       };
 

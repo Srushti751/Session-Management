@@ -7,19 +7,21 @@ import jwt from "jwt-decode";
 
 import { Context } from "../context/userContext";
 import CustomDrawer from "../extras/CustomDrawer";
+import { logout } from "../actions/userAction";
 
 function Navbar({ name }) {
   const [isOpen, setIsOpen] = useState(false);
   let currentUser = useSelector((state) => state.loginUserReducer.currentUser);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const token = currentUser && currentUser.token;
   const user = token && jwt(token); // decode your token here
   console.log("User", user && user);
 
   const logoutUser = () => {
     try {
-      localStorage.removeItem("user");
+      dispatch(logout());
       navigate("/dashboard");
     } catch (error) {}
   };
@@ -27,7 +29,6 @@ function Navbar({ name }) {
   return (
     <div className="navStyle">
       <Nav className="">
-        {console.log("currentUser", currentUser.token)}
         <Nav.Item className="linkStyle mr-2">
           <Nav.Link className="linkStyle" as={NavLink} to="/dashboard">
             <h2> {name}</h2>

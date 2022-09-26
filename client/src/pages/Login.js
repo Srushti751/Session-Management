@@ -34,7 +34,8 @@ function Login() {
   //     .catch((err) => console.log(err));
   // };
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     setLoading(true);
     if (!empid || !password) {
       // toast({
@@ -51,6 +52,9 @@ function Login() {
       const user = { empid, password };
       dispatch(loginUser(user));
       setPassword("");
+      alert("Login successful");
+
+      navigate("/dashboard");
       // history.push("/home");
     }
   };

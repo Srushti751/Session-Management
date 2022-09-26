@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { postLogin } from "../apis/employeeapi";
 
 export const loginUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_LOGIN_REQ" });
+
   try {
     const config = {
       headers: {
@@ -17,4 +19,9 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: "USER_LOGIN_FAIL", payload: error });
     alert("Login failed");
   }
+};
+
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem("currentUser");
+  dispatch({ type: "USER_LOGOUT" });
 };

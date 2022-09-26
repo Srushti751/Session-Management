@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/userContext";
 
 function Sidebar() {
   const navlinks = ["dashboard", "session", "profile"];
 
-  const currentUser = useContext(Context);
+  // const currentUser = useContext(Context);
+  let currentUser = useSelector((state) => state.loginUserReducer.currentUser);
 
   return (
     <>

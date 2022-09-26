@@ -5,19 +5,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllSessionApi, getSessionApi } from "../apis/sessionapi";
 import Navbar from "../components/Navbar";
 import jwt from "jwt-decode";
+import { useSelector } from "react-redux";
 
 function Sessions({ name }) {
   const [sessionDetails, setSessionDetails] = useState([]);
 
   const navigate = useNavigate();
 
+  const currentUser = useSelector(
+    (state) => state.loginUserReducer.currentUser
+  );
+  const token = currentUser && currentUser.token;
+  const user = token && jwt(token); // decode your token here
+  console.log("User", user && user);
+
   const getSessionDetails = async () => {
-    const userTok = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : "";
-    if (userTok.token) {
-      const user = jwt(userTok.token); // decode your token here
-      const data = await getAllSessionApi(userTok.token, user);
+    if (token) {
+      const data = await getAllSessionApi(token, user);
       // console.log("cx", user);
       // localStorage.setItem("token", JSON.stringify(user));
       setSessionDetails(data.data.data);
