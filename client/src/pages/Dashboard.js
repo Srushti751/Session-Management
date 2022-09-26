@@ -1,6 +1,6 @@
-import React from "react";
-import { Container } from "react-bootstrap";
-import Navbar from "../components/Navbar";
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import Navbar from '../components/Navbar';
 
 function Dashboard({ name }) {
   return (
